@@ -6,4 +6,4 @@ Implementations of some algorithms for the sake of me understanding them. I chos
 
 ## Compression
 
- - [01-burrows-wheeler-transform](01-burrows-wheeler-transform) rearranges a character string into runs of similar characters, used in bzip2 and DNA compression
+ - [01-burrows-wheeler-transform](01-burrows-wheeler-transform) - rearranges a character string into runs of similar characters, used in bzip2 and DNA compression
