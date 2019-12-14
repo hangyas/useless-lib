@@ -11,3 +11,7 @@ Implementations of some algorithms for the sake of me understanding them. I chos
 ## Search trees
 
  - [02-avl-tree](02-avl-tree) - self-balancing binary search tree
+
+# Todo
+
+ - [ ] Wavelet Tree
