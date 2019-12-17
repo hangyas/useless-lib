@@ -35,11 +35,11 @@ object avl extends App {
         case Empty() => Node(key, value, Empty(), Empty())
         case node: Node[K, V] => {
           if (comp.isSmaller(key, node.key)) {
-            node.copy(left = node.left.add(key, value)).balance()
+            node.copy(left = node.left.add(key, value)).balanced
           } else if (comp.isGreater(key, node.key)) {
-            node.copy(right = node.right.add(key, value)).balance()
+            node.copy(right = node.right.add(key, value)).balanced
           } else {
-            node.copy(value = value).balance()
+            node.copy(value = value).balanced
           }
         }
       }
@@ -48,16 +48,16 @@ object avl extends App {
       case Empty() => Empty() // no such element 
       case node: Node[K, V] => {
         if (comp.isSmaller(key, node.key)) {
-          node.copy(left = node.left.delete(key)).balance()
+          node.copy(left = node.left.delete(key)).balanced
         } else if (comp.isGreater(key, node.key)) {
-          node.copy(right = node.right.delete(key)).balance()
+          node.copy(right = node.right.delete(key)).balanced
         } else {
           // equals
           node match {
             case Node(_, _, Empty(), Empty()) => Empty()
             case Node(_, _, left, Empty()) => left
             case Node(_, _, Empty(), right) => right
-            case Node(_, _, left, right) => right.findLeftMost().copy(left = left, right = right.deleteLeftMost())
+            case Node(_, _, left, right) => right.findLeftMost().copy(left = left, right = right.deleteLeftMost()).balanced
           }
         }
       }
@@ -76,7 +76,7 @@ object avl extends App {
       case node @ Node(_, _ , left, _) => node.copy(left = left.deleteLeftMost())
     }
 
-    def balance(): Tree[K, V] = this match {
+    def balanced: Tree[K, V] = this match {
       case node @ Node(_, _, _, right)
           if node.heightDiff == 2 && right.heightDiff == 1 =>
         node.rotatedLeft
@@ -88,7 +88,7 @@ object avl extends App {
       case node @ Node(_, _, left, _) if node.heightDiff == -2 =>
         node.copy(left = left.rotatedLeft).rotatedRight
       case node @ Node(_, _, left, right) =>
-        node.copy(left = left.balance(), right = right.balance())
+        node.copy(left = left.balanced, right = right.balanced)
       case Empty() => Empty()
     }
 
@@ -118,14 +118,11 @@ object avl extends App {
   }
 
   object Tree {
-    // TODO create elegant builder methods
-    // def node[K, V](
-    //     key: K,
-    //     value: V,
-    //     left: Tree[K, V],
-    //     right: Tree[K, V]
-    // ): Tree[K, V] = Node(key, value, left, right)
-    // def empty[K, V]() = Empty
+    def create[K, V](pairs: (K, V)*)(implicit comp: Comparator[K]): Tree[K, V] = {
+      var r: Tree[K, V] = Node(pairs.head._1, pairs.head._2)
+      return pairs.tail.foldLeft(r){(a: Tree[K, V], b: (K, V)) => a.add(b._1, b._2)(comp)}
+      // return null
+    }
   }
 
   case class Node[K, V](
@@ -164,4 +161,8 @@ object avl extends App {
 
   println(Node(2, 2).add(1, 1).add(3, 3).delete(2))
   println(Node(2, 2).add(1, 1).add(3, 3).delete(2).delete(3))
+  println(Node(1, 1, Node(2, 2, Node(3, 3, Node(4, 4), Empty()), Empty()), Empty()))
+  println(Node(1, 1, Node(2, 2, Node(3, 3, Node(4, 4), Empty()), Empty()), Empty().balanced))
+
+  println(tree == Tree.create(1 -> 1, 2 -> 2, 3 -> 3, 4 -> 4, 5 -> 5, 6 -> 6))
 }
