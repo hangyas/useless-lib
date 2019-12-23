@@ -1,4 +1,4 @@
-// TODO this file needs much improvement
+
 object avl extends App {
 
   trait Comparator[T] {
@@ -121,7 +121,6 @@ object avl extends App {
     def create[K, V](pairs: (K, V)*)(implicit comp: Comparator[K]): Tree[K, V] = {
       var r: Tree[K, V] = Node(pairs.head._1, pairs.head._2)
       return pairs.tail.foldLeft(r){(a: Tree[K, V], b: (K, V)) => a.add(b._1, b._2)(comp)}
-      // return null
     }
   }
 
