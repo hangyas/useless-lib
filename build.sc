@@ -7,3 +7,4 @@ trait UselessModule extends ScalaModule {
 
 object `01-burrows-wheeler-transform` extends UselessModule 
 object `02-avl-tree` extends UselessModule 
+object `03-wavelet-tree` extends UselessModule 

@@ -15,3 +15,7 @@ Implementations of some algorithms for the sake of me understanding them. I chos
 # Todo
 
  - [ ] Wavelet Tree
+
+# Test
+
+This library is only meant to demonstrate the top-level idea of algorithms, as such, I don't have the intention to write optimized and/or well-tested implementations. I might add proper test cases to some files when I feel like it.
