@@ -7,6 +7,7 @@ Implementations of some algorithms for the sake of me understanding them. I chos
 ## Compression
 
  - [01-burrows-wheeler-transform](01-burrows-wheeler-transform) - rearranges a character string into runs of similar characters, used in bzip2 and DNA compression
+ - [03-wavelet-tree](03-wavelet-tree) -  succinct data structure to store strings in compressed space, using `rank` and `select` methods. Information about a given range can be extracted as well.
 
 ## Search trees
 
