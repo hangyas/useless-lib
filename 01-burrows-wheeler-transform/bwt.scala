@@ -6,6 +6,8 @@ object btw extends App {
   /**
     * last column from sorted allRotations
     *
+    * banana$ -> annb$aa (last column of sorted rotations)
+    * 
     * $ = EOF
     */
   def bwt(input: String): String =
@@ -36,13 +38,30 @@ object btw extends App {
     return r
   }
 
+  /**
+    * ˅ sorted input (the original table is sorted alphabetically)
+    *       ˅ the input
+    * $.....a // the first character is the following character after
+    * a.....n    the one in the last column 
+    * a.....n
+    * a.....b
+    * b.....$
+    * n.....a
+    * n.....a
+    * 
+    * we figure out which character follows which one
+    * and get back the original order (terminated by the EOF)
+    * 
+    * annb$aa -> banana$
+    * 
+    */
   def reverseBwt(input: String): String = {
-    val pairs = mutable.ArrayBuffer(input.sorted.zip(input): _*)
+    val pairs = mutable.ArrayBuffer(input.sorted.zip(input): _*) // create the table shown above
 
     val result = new StringBuilder()
-    var c = '$'
+    var c = '$' // start from the EOF
     while (pairs.nonEmpty) {
-      val i = pairs.lastIndexWhere(_._2 == c)
+      val i = pairs.lastIndexWhere(_._2 == c) // find the previous character
       c = pairs(i)._1 // original character to the right (because of cyclic shifting)
       pairs.remove(i)
 
