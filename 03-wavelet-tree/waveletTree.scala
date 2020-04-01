@@ -73,6 +73,9 @@ object waveletTree extends App {
   }
 
   // TODO build huffmann shaped
+  // TODO Give me the absolute position for the 4th value 42 in the array
+  // Access (int index): Return me the value at the specified index ( like array[idx] ).
+  // Seek (int value): Return me all the Indexes that match value.
 
   val t = buildNaiveTree(
     (0 until 10).toList,
