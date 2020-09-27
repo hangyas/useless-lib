@@ -1,6 +1,6 @@
 # useless-lib
 
-Implementations of some algorithms for the sake of me understanding them. I chose scala because it fits any programming style and paradigm, I feel best for a given algorithm. No consistency between files. No optimizations. Most of it's is experimenting.
+Implementations of some algorithms for the sake of me understanding them. I chose scala because it fits any programming style and paradigm, I feel the best for a given algorithm. No consistency between files. No optimizations. No guarantees.
 
 # Index
 
@@ -13,17 +13,19 @@ Implementations of some algorithms for the sake of me understanding them. I chos
 
  - [02-avl-tree](02-avl-tree) - self-balancing binary search tree
  - [04-b-tree](04-b-tree) - self-balancing data structure used in databases and file systems
+ - [05-finger-tree](05-finger-tree) -  purely functional data structure, in this case used to implement a highly efficient `Seq`. Could be used for other types of data structures as well
 
 # Todo
 
  - [x] Wavelet Tree
- - [ ] B-Tree
+ - [x] B-Tree
  - [ ] B+-Tree
- - [ ] Finger Tree
+ - [x] Finger Tree
+ - [ ] RRB Trees (good for parallel computing) (Relaxed Radix Balanced Trees)
  - [ ] Rabin-Karp
  - [ ] Knuth-Morris-Pratt
  - [ ] Rope
- - [ ] RRB Trees (good for parallel computing) (Relaxed Radix Balanced Trees)
+ - [ ] Nussinov
  - [ ] Write some shared code to print trees (with typeclasses)
 
 # Test
